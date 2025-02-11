@@ -141,3 +141,19 @@ If you find our work helpful, please use the following citations.
 
 ## 🪪 License
 MIT. Check `LICENSE.md`.
+
+# Build Docker Images to Docker Hub
+
+1. First, setup the docker hub cloud builder. You can follow the instructions [here](https://app.docker.com/build/accounts/metrevals/builders/vivaria/cli)
+2. Then:
+```
+docker login
+docker buildx use cloud-metrevals-vivaria
+python swebench/harness/prepare_images.py
+```
+
+Then, run the script `./build.sh` to build these into inspect compatible images. If you made changes, you might want to bump the version signifier. 
+
+NOTE: this could be heavily optimized in the future, but it's ok for now.
+
+NOTE: this will not work in the dev container for inspect currently, as docker-in-docker does not support cloud builders. Perhaps there is a way to fix this. 
